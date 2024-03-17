@@ -3,7 +3,6 @@ from src.rectangle import Rectangle
 from src.triangle import Triangle
 from src.square import Square
 from src.circle import Circle
-from src.figure import Figure
 
 
 @pytest.fixture(params=[(1, 2, 2), (1.1, 1.2, 1.32)], ids=['int', 'float'])
@@ -16,7 +15,6 @@ def rectangle_data(request):
 @pytest.fixture()
 def data_wrapper_areas():
     """fixture for areas of figures"""
-
     def _wrapper(data: str):
         if data == 'rectangle_integer':
             return 3, 5, 15
@@ -34,11 +32,6 @@ def data_wrapper_areas():
             return 5, 78.53981633974483
         if data == 'float_circle':
             return 5.5, 95.03317777109125
-        if data == 'square+triangle':
-            s = Square(10)
-            t = Triangle(13,14,15)
-            add_area_sum = 184
-            return s, t, add_area_sum
 
     yield _wrapper
 
@@ -46,7 +39,6 @@ def data_wrapper_areas():
 @pytest.fixture()
 def data_wrapper_perimeters():
     """fixtures for perimeters of figures"""
-
     def _wrapper(data: str):
         if data == 'rectangle_integer':
             return 3, 5, 16
@@ -70,8 +62,7 @@ def data_wrapper_perimeters():
 
 @pytest.fixture()
 def data_wrapper_error():
-    """fixture for triangle errors"""
-
+    """fixture for raise errors"""
     def _wrapper(data: str):
         if data == 'rectangle_integer':
             return 13, -14
@@ -103,12 +94,26 @@ def data_wrapper_add_areas():
             s = Square(10)
             t = Triangle(13,14,15)
             return s, t, 184
+        if data == 'rectangle+circle':
+            r = Rectangle(3, 5)
+            c = Circle(2)
+            return r, c, 27.566370614359172
+        if data == 'similar_figures':
+            r = Rectangle(3,5)
+            return r, r, 30
 
     yield _wrapper
 
-# @pytest.fixture()
-# def areas():
-#     s = Square(5)
-#     t = Triangle(13,14,15)
-#     c = Circle(3)
-#     r = Rectangle(3, 5)
+
+@pytest.fixture()
+def data_wrapper_add_area_error():
+    """fixtures for raise errors in add_area"""
+    def _wrapper(data: str):
+        if data == 'square':
+            s = Square(10)
+            return s, 5
+        if data == 'triangle':
+            t = Triangle(13,14,15)
+            return t, 5
+
+    yield _wrapper

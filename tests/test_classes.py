@@ -2,7 +2,6 @@ from src.rectangle import Rectangle
 from src.triangle import Triangle
 from src.square import Square
 from src.circle import Circle
-from src.figure import Figure
 from datetime import datetime
 import pytest
 
@@ -145,22 +144,15 @@ def test_circle_error(data_wrapper_error, circle):
     with pytest.raises(ValueError):
         Circle(radius)
 
-# @pytest.mark.parametrize("figures", ['square+triangle'])
-# def test_add_area(data_wrapper_areas, figures):
-#     s, t, add_area_sum = data_wrapper_areas(data=figures)
-#     assert s.add_area(t) == add_area_sum
 
-
-
-@pytest.mark.parametrize("figures", ['square+triangle'])
-def test_add_area(data_wrapper_areas, figures):
-    figure_1, figure_2, add_area_sum = data_wrapper_areas(data=figures)
+@pytest.mark.parametrize("figures", ['square+triangle', 'rectangle+circle', 'similar_figures'])
+def test_add_area(data_wrapper_add_areas, figures):
+    figure_1, figure_2, add_area_sum = data_wrapper_add_areas(data=figures)
     assert figure_1.add_area(figure_2) == add_area_sum
 
 
-
-def test_circle_errodddr():
-    s= Square(10)
-    t = Triangle(13,14,15)
+@pytest.mark.parametrize("error_data", ['square', 'triangle'])
+def test_add_area_raise_error(data_wrapper_add_area_error, error_data):
+    figure, uncorrect_value = data_wrapper_add_area_error(data=error_data)
     with pytest.raises(ValueError):
-        s.add_area(5)
+        figure.add_area(uncorrect_value)
