@@ -9,3 +9,16 @@ def api_client():
     return client
 
 
+# @pytest.fixture()
+# def data_wrapper_dogs():
+#     """fixtures for perimeters of figures"""
+#
+#     def _wrapper(data: str):
+#
+#
+#     yield _wrapper
+
+@pytest.fixture()
+def number():
+    number = [x for x in range(1, 51)]
+    yield number

@@ -1,3 +1,4 @@
+import pytest
 import requests
 
 
@@ -13,3 +14,19 @@ class DogApiClient:
     def get_single_random_image(self):
         response = self.session.get(url=f'{self.base_url}/breeds/image/random')
         return response
+
+
+    # def get_miltiple_random_images(self):
+    #
+    #     number_of_dogs = [dog for dog in range(1, 51)]
+    #     # for dog in number_of_dogs:
+    #     response = self.session.get(url=f'{self.base_url}/breeds/image/random/{dog}')
+    #     return response
+
+    def get_mulpiple_random_images(self, number_of_dogs):
+        # number_of_dogs = [x for x in range(1,51)]
+        response = self.session.get(url=f'{self.base_url}/breeds/image/random/{number_of_dogs}')
+        return response
+
+
+
