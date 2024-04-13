@@ -1,5 +1,4 @@
 import pytest
-
 from api_testing.dog_api.dog_api_client.dog_api_client import DogApiClient
 
 
@@ -11,15 +10,13 @@ def api_client():
 
 @pytest.fixture()
 def data_wrapper_breeds():
-    """fixture for areas of figures"""
-
     def _wrapper(data: str):
-        if data == 'cute_dogs':
+        if data == "cute_dogs":
             return ["akita", "hound"]
-        if data == 'dangerous_dogs':
-            return ['boxer']
-        if data == 'list_subbreeds':
-            return ['hound']
+        if data == "dangerous_dogs":
+            return ["boxer"]
+        if data == "list_subbreeds":
+            return ["hound"]
 
     yield _wrapper
 
@@ -30,7 +27,7 @@ def schema_all_breeds():
         "type": "object",
         "properties": {
             "message": {"type": "object"},
-            'status': {"type": "string"}
+            "status": {"type": "string"}
         },
         "required": ["message", "status"]}
 
@@ -41,7 +38,7 @@ def schema_random_image():
         "type": "object",
         "properties": {
             "message": {"type": "string"},
-            'status': {"type": "string"}
+            "status": {"type": "string"}
         },
         "required": ["message", "status"]}
 
@@ -52,7 +49,7 @@ def schema_multiple_random_image():
         "type": "object",
         "properties": {
             "message": {"type": "array"},
-            'status': {"type": "string"}
+            "status": {"type": "string"}
         },
         "required": ["message", "status"]}
 
@@ -63,8 +60,8 @@ def schema_hound_list():
         "type": "object",
         "properties": {
             "message": {"type": "array",
-                        'items': {'type': 'string',
-                                  'enum':
+                        "items": {"type": "string",
+                                  "enum":
                                       ["afghan",
                                        "basset",
                                        "blood",
@@ -72,5 +69,5 @@ def schema_hound_list():
                                        "ibizan",
                                        "plott",
                                        "walker"]}},
-            'status': {"type": "string"}},
+            "status": {"type": "string"}},
         "required": ["message", "status"]}
