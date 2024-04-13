@@ -15,18 +15,14 @@ class DogApiClient:
         response = self.session.get(url=f'{self.base_url}/breeds/image/random')
         return response
 
-
-    # def get_miltiple_random_images(self):
-    #
-    #     number_of_dogs = [dog for dog in range(1, 51)]
-    #     # for dog in number_of_dogs:
-    #     response = self.session.get(url=f'{self.base_url}/breeds/image/random/{dog}')
-    #     return response
-
     def get_mulpiple_random_images(self, number_of_dogs):
-        # number_of_dogs = [x for x in range(1,51)]
         response = self.session.get(url=f'{self.base_url}/breeds/image/random/{number_of_dogs}')
         return response
 
+    def get_random_image_from_collection(self, breed):
+        response = self.session.get(url=f'{self.base_url}/breed/{breed}/images/random')
+        return response
 
-
+    def get_list_all_sub_breeds(self):
+        response = self.session.get(url=f'{self.base_url}/breed/hound/list')
+        return response
