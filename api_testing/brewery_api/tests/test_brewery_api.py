@@ -18,6 +18,7 @@ def test_pagination_city(city, per_page, api_client, schema_pagination):
     json_response = response.json()
     validate(instance=json_response, schema=schema_pagination), "Json structure must be valid"
 
+
 @pytest.mark.parametrize("type", ["micro", "nano", "closed"])
 @pytest.mark.parametrize("per_page", [1, 2])
 def test_type(type, per_page, api_client, schema_pagination):

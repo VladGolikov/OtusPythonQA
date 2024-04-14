@@ -10,19 +10,6 @@ def api_client():
 
 
 @pytest.fixture()
-def data_wrapper():
-    """fixture for areas of figures"""
-
-    def _wrapper(data: str):
-        if data == 'europe':
-            return ["england", "france"]
-        if data == 'asia':
-            return ['south_korea', "singapore"]
-
-    yield _wrapper
-
-
-@pytest.fixture()
 def schema_by_country():
     return {
         "type": "object",
